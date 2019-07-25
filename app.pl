@@ -8,14 +8,28 @@
 :- use_module(library(http/http_unix_daemon)).
 :- use_module(library(http/http_files)).
 
+:- use_module('storage.pl').
+:- use_module('views/person.pl').
+
 :- http_handler(/,index,[method(get)]).
 
 
+%index(Request) :-
+%	format('Content-Type: text/html~n~n'),
+%	format('Hello World').
+
 index(Request) :-
-	format('Content-Type: text/html~n~n'),
-	format('Hello World').
+	phrase(
+        view_person,
+        TokenHTML,
+        []    
+    ),
+    format('Content-Type: text/html~n~n'),
+	print_html(TokenHTML).
 
 start :-
+	load_data,
+	html_set_options([dialect(html5)]),
 	http_daemon([port(2345),fork(false)]).
 
 :- start.

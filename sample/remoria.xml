@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+]>
+
+<rdf:RDF 
+    xmlns:rdf="&rdf;"
+    xmlns:schema="https://schema.org/"
+    xml:base="https://remoria.adrianistan.eu/"
+    >
+    <rdf:Description rdf:type="https://schema.org/Blog" rdf:about="https://remoria.adrianistan.eu">
+        <schema:author rdf:resource="#author_aarroyoc"/>
+        <schema:dateCreated>2019-07-25</schema:dateCreated>
+        <schema:dateModified>2019-07-25</schema:dateModified>
+        <schema:datePublished>2019-07-25</schema:datePublished>
+        <schema:keywords>programming,software,rust,prolog</schema:keywords>
+        <schema:inLanguage>en</schema:inLanguage>
+        <schema:license>https://creativecommons.org/licenses/by-nc-sa/4.0/</schema:license>
+        <schema:description>Self-portrait of Adrián Arroyo in English web</schema:description>
+        <schema:name>Remoria</schema:name>
+        <schema:url>https://remoria.adrianistan.eu</schema:url>
+    </rdf:Description>
+
+    <rdf:Description rdf:type="https://schema.org/Person" rdf:ID="author_aarroyoc">
+        <schema:image></schema:image>
+        <schema:knowsAbout></schema:knowsAbout>
+        <schema:knowsLanguage>en</schema:knowsLanguage>
+        <schema:knowsLanguage>es</schema:knowsLanguage>
+        <schema:nationality></schema:nationality>
+        <schema:worksFor></schema:worksFor>
+        <schema:name>Adrián Arroyo Calle</schema:name>
+    </rdf:Description>
+
+
+</rdf:RDF>
