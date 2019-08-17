@@ -9,7 +9,7 @@
     xml:base="https://remoria.adrianistan.eu/"
     >
     <rdf:Description rdf:type="https://schema.org/Blog" rdf:about="https://remoria.adrianistan.eu">
-        <schema:author rdf:resource="#author_aarroyoc"/>
+        <schema:author rdf:resource="author/aarroyoc"/>
         <schema:dateCreated>2019-07-25</schema:dateCreated>
         <schema:dateModified>2019-07-25</schema:dateModified>
         <schema:datePublished>2019-07-25</schema:datePublished>
@@ -21,7 +21,7 @@
         <schema:url>https://remoria.adrianistan.eu</schema:url>
     </rdf:Description>
 
-    <rdf:Description rdf:type="https://schema.org/Person" rdf:ID="author_aarroyoc">
+    <rdf:Description rdf:type="https://schema.org/Person" rdf:about="author/aarroyoc">
         <schema:image></schema:image>
         <schema:knowsAbout></schema:knowsAbout>
         <schema:knowsLanguage>en</schema:knowsLanguage>

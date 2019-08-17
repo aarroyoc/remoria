@@ -9,23 +9,23 @@
 :- use_module(library(http/http_files)).
 
 :- use_module('storage.pl').
-:- use_module('views/person.pl').
+:- use_module('views/author.pl').
 
-:- http_handler(/,index,[method(get)]).
+:- http_handler(root(author/Author),author(Author),[method(get)]).
 
 
 %index(Request) :-
 %	format('Content-Type: text/html~n~n'),
 %	format('Hello World').
 
-index(Request) :-
+author(Author,_Request) :-
 	phrase(
-        view_person,
-        TokenHTML,
+        view_author(Author),
+        HTML,
         []    
     ),
     format('Content-Type: text/html~n~n'),
-	print_html(TokenHTML).
+	print_html(HTML).
 
 start :-
 	load_data,
