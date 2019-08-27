@@ -9,11 +9,12 @@
 view_author(Author) -->
     {
         atom_string(XAuthor,Author),
-        atom_concat('/author/',XAuthor,AuthorURI),
-        rdf(Blog,'http://www.w3.org/1999/02/22-rdf-syntax-ns#type','https://schema.org/Blog'),
+        atom_concat('/author/', XAuthor, AuthorURI),
+        rdf(Blog, rdf:type, schema:'Blog'),
         atom_concat(Blog, AuthorURI, URI),
-        rdf(URI, 'https://schema.org/name', LName),
-        rdf_literal_value(LName, Name)
+	rdf(URI, schema:name, LName),
+	rdf_literal_value(LName, Name)
+	%Name = URI
     },
     html([
         html([

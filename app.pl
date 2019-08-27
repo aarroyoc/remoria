@@ -9,6 +9,7 @@
 :- use_module(library(http/http_files)).
 
 :- use_module('storage.pl').
+:- use_module('prefix.pl').
 :- use_module('views/author.pl').
 
 :- http_handler(root(author/Author),author(Author),[method(get)]).

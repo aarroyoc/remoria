@@ -6,9 +6,9 @@
 
 title --> 
     {
-        rdf(Blog,'http://www.w3.org/1999/02/22-rdf-syntax-ns#type','https://schema.org/Blog'),
-        rdf(Blog,'https://schema.org/name',XTitle),
-        rdf_literal_value(XTitle,Title)        
+        rdf(Blog, rdf:type, schema:'Blog'),
+        rdf(Blog, schema:name, XTitle),
+        rdf_literal_value(XTitle, Title)        
     },
     html([title(Title)]).
 
@@ -17,10 +17,10 @@ charset -->
 
 meta -->
     {
-        rdf(Blog,'http://www.w3.org/1999/02/22-rdf-syntax-ns#type','https://schema.org/Blog'),
-        rdf(Blog,'https://schema.org/keywords',XKeywords),
+        rdf(Blog, rdf:type, schema:'Blog'),
+        rdf(Blog, schema:keywords, XKeywords),
         rdf_literal_value(XKeywords, Keywords),
-        rdf(Blog,'https://schema.org/description',XDescription),
+        rdf(Blog, schema:description, XDescription),
         rdf_literal_value(XDescription, Description)
     },
     html([
