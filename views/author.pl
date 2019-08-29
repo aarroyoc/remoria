@@ -4,8 +4,6 @@
 :- use_module(library(semweb/rdf_db)).
 :- use_module(library(semweb/rdf11),[rdf_canonical_literal/2]).
 
-:- use_module('common.pl').
-
 view_author(Author) -->
     {
         atom_string(XAuthor,Author),
@@ -17,14 +15,5 @@ view_author(Author) -->
 	%Name = URI
     },
     html([
-        html([
-            head([
-                \title,
-                \charset,
-                \meta
-            ]),
-            body([
-                h1(Name)
-            ])
-        ])
+        h1(Name)
     ]).

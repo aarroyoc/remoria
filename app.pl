@@ -10,6 +10,7 @@
 
 :- use_module('storage.pl').
 :- use_module('prefix.pl').
+:- use_module('views/common.pl').
 :- use_module('views/author.pl').
 
 :- http_handler(root(author/Author),author(Author),[method(get)]).
@@ -20,13 +21,14 @@
 %	format('Hello World').
 
 author(Author,_Request) :-
-	phrase(
-        view_author(Author),
-        HTML,
-        []    
-    ),
-    format('Content-Type: text/html~n~n'),
-	print_html(HTML).
+	%phrase(
+	%view_author(Author),
+	%HTML,
+	%[]    
+	%),
+	%format('Content-Type: text/html~n~n'),
+	%print_html(HTML).
+	reply_html_page([\head],[\view_author(Author)]).
 
 start :-
 	load_data,
