@@ -8,27 +8,54 @@
 :- use_module(library(http/http_unix_daemon)).
 :- use_module(library(http/http_files)).
 
+:- use_module(library(semweb/rdf_db)).
+:- use_module(library(semweb/rdf11),[rdf_canonical_literal/2]).
+
 :- use_module('storage.pl').
 :- use_module('prefix.pl').
 :- use_module('views/common.pl').
 :- use_module('views/author.pl').
+:- use_module('views/post.pl').
 
-:- http_handler(root(author/Author),author(Author),[method(get)]).
+:- http_handler(root(page/Page), page(Page), [method(get)]).
+:- http_handler(root(_), content(_), [method(get)]).
+:- http_handler(root(.), index, [method(get)]).
+
+page(_Number, _Request) :-
+	format('Content-Type: text/html~n~n'),
+	format('Hello Page').
+
+% Person
+content(_Path, Request) :-
+    content_uri(Request, URI),
+	rdf(URI, rdf:type, schema:'Person'),
+	lrdf(URI, schema:name, Name),
+	reply_html_page([\head],[\view_author(Name)]).
+
+% Blog Post
+content(_Path, Request) :-
+	content_uri(Request, URI),
+	rdf(URI, rdf:type, schema:'BlogPosting'),
+	lrdf(URI, schema:name, Name),
+	lrdf(URI, schema:articleBody, Body),
+	reply_html_page([\head],[\view_post(Name, Body)]).
+
+content(_, Request) :- http_404([],Request).
+
+index(Request) :-
+	format('Content-Type: text/html~n~n'),
+	format('Hello World').
+
+content_uri(Request, URI) :-
+	member(request_uri(Path), Request),
+	rdf(Blog, rdf:type, schema:'Blog'),
+	atom_concat(Blog, Path, URI).
+
+lrdf(S, P, O) :-
+	rdf(S, P, XO),
+	rdf_literal_value(XO, O).
 
 
-%index(Request) :-
-%	format('Content-Type: text/html~n~n'),
-%	format('Hello World').
-
-author(Author,_Request) :-
-	%phrase(
-	%view_author(Author),
-	%HTML,
-	%[]    
-	%),
-	%format('Content-Type: text/html~n~n'),
-	%print_html(HTML).
-	reply_html_page([\head],[\view_author(Author)]).
 
 start :-
 	load_data,
