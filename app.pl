@@ -16,6 +16,7 @@
 :- use_module('views/common.pl').
 :- use_module('views/author.pl').
 :- use_module('views/post.pl').
+:- use_module('views/index.pl').
 
 :- http_handler(root(page/Page), page(Page), [method(get)]).
 :- http_handler(root(_), content(_), [method(get)]).
@@ -42,9 +43,13 @@ content(_Path, Request) :-
 
 content(_, Request) :- http_404([],Request).
 
+post_link(PostLink) :-
+	rdf(URI, rdf:type, schema:'BlogPosting'),
+	lrdf(URI, schema:name, PostLink).
+
 index(Request) :-
-	format('Content-Type: text/html~n~n'),
-	format('Hello World').
+	findall(PostLink, post_link(PostLink), Links),
+	reply_html_page([\head], [\view_index(Links)]).
 
 content_uri(Request, URI) :-
 	member(request_uri(Path), Request),
