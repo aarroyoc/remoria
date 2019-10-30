@@ -29,6 +29,17 @@
         <schema:nationality></schema:nationality>
         <schema:worksFor></schema:worksFor>
         <schema:name>Adrián Arroyo Calle</schema:name>
+</rdf:Description>
+
+    <rdf:Description rdf:type="https://schema.org/BlogPosting" rdf:about="post/english-blog">
+	<schema:articleBody>
+	<![CDATA[
+	    <p>Are you <i>happy</i>?</p>
+	]]>
+	</schema:articleBody>
+	<schema:author rdf:resource="author/aarroyoc"/>
+	<schema:name>English Blog</schema:name>
+	<schema:dateCreated>2019-10-30</schema:dateCreated>
     </rdf:Description>
 
     <rdf:Description rdf:type="https://schema.org/BlogPosting" rdf:about="post/hello-world">
@@ -41,6 +52,7 @@
         </schema:articleBody>
         <schema:author rdf:resource="author/aarroyoc"/>
         <schema:name>Hello world!</schema:name>
+	<schema:dateCreated>2019-10-29</schema:dateCreated>
     </rdf:Description>
 
 

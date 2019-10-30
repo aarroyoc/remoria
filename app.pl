@@ -43,13 +43,16 @@ content(_Path, Request) :-
 
 content(_, Request) :- http_404([],Request).
 
-post_link(PostLink) :-
+post_link(Post) :-
 	rdf(URI, rdf:type, schema:'BlogPosting'),
-	lrdf(URI, schema:name, PostLink).
+	lrdf(URI, schema:name, Title),
+	lrdf(URI, schema:dateCreated, Date),
+	Post = post(Title, URI, Date).
 
 index(Request) :-
-	findall(PostLink, post_link(PostLink), Links),
-	reply_html_page([\head], [\view_index(Links)]).
+	findall(Post, post_link(Post), Posts),
+	sort(3, @>=, Posts, SortedPosts),
+	reply_html_page([\head], [\view_index(SortedPosts)]).
 
 content_uri(Request, URI) :-
 	member(request_uri(Path), Request),

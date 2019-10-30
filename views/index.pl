@@ -2,12 +2,13 @@
 
 :- use_module(library(http/html_write)).
 
-gen_link(Link, HTMLLink) :-
-	HTMLLink = html([li(Link)]).
+gen_link(Post, HTMLLink) :-
+	post(Title, Link, Date) = Post,
+	HTMLLink = li(a(href=Link,Title)).
 
-view_index(Links) -->
+view_index(Posts) -->
     {
-    	maplist(gen_link, Links, HTMLLinks)
+    	maplist(gen_link, Posts, HTMLLinks)
     },
     html([
 	h1('Remoria'),
