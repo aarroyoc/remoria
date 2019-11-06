@@ -4,6 +4,16 @@
 
 view_post(Name, Body) -->
     html([
-        h1(Name),
-        article(\[Body])
+        header([
+		h1([a(href='/','Remoria')]),
+		nav([
+			ul(class='nav navbar-nav',[
+				li(a(href='/about','About'))
+			])
+		])
+	]),
+	div(class=page,[
+        	h2(Name),
+        	article(\[Body])]),
+	footer('Copyright 2019 by Adrián Arroyo Calle')
     ]).

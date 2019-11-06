@@ -18,9 +18,15 @@
 :- use_module('views/post.pl').
 :- use_module('views/index.pl').
 
+:- http_handler(root(static/Path), static_css(Path), [method(get)]).
 :- http_handler(root(page/Page), page(Page), [method(get)]).
 :- http_handler(root(_), content(_), [method(get)]).
 :- http_handler(root(.), index, [method(get)]).
+
+static_css(Path, Request) :-
+	string_concat('static/', Path, RealPath),
+	atom_string(AtomPath, RealPath),
+	http_reply_file(AtomPath,[],Request).
 
 page(_Number, _Request) :-
 	format('Content-Type: text/html~n~n'),

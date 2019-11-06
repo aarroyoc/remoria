@@ -1,4 +1,4 @@
-:- module(common, [head/2, title/2, charset/2, meta/2]).
+:- module(common, [head/2, title/2, charset/2, css/2, meta/2]).
 
 :- use_module(library(http/html_write)).
 :- use_module(library(semweb/rdf_db)).
@@ -14,6 +14,10 @@ title -->
 
 charset -->
     html([meta(charset="utf-8")]).
+
+css -->
+    html([link([rel="stylesheet", href="/static/style.css"])]).
+
 
 meta -->
     {
@@ -32,5 +36,6 @@ head -->
 	html([
 		\title,
 		\charset,
+		\css,
 		\meta
 	]).

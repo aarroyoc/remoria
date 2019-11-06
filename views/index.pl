@@ -11,6 +11,17 @@ view_index(Posts) -->
     	maplist(gen_link, Posts, HTMLLinks)
     },
     html([
-	h1('Remoria'),
-	ul(HTMLLinks)
+        header([
+	    h1([a(href='/', 'Remoria')]),
+	    nav([
+	        ul(class='nav navbar-nav', [
+		    li(a(href='/about','About'))
+		])
+	    ])
+	]),
+	div(class=page,[
+            h2('All posts'),
+	    ul(HTMLLinks)
+	]),
+	footer('Copyright 2019 by Adrián Arroyo Calle')
     ]).
