@@ -13,6 +13,7 @@
 
 :- use_module('storage.pl').
 :- use_module('prefix.pl').
+:- use_module('rss.pl').
 :- use_module('views/common.pl').
 :- use_module('views/author.pl').
 :- use_module('views/post.pl').
@@ -20,6 +21,8 @@
 
 :- http_handler(root(static/Path), static_css(Path), [method(get)]).
 :- http_handler(root(page/Page), page(Page), [method(get)]).
+:- http_handler(root(about), about, [method(get)]).
+:- http_handler(root('rss.xml'), rss, [method(get)]).
 :- http_handler(root(_), content(_), [method(get)]).
 :- http_handler(root(.), index, [method(get)]).
 
@@ -42,12 +45,24 @@ content(_Path, Request) :-
 % Blog Post
 content(_Path, Request) :-
 	content_uri(Request, URI),
+	rdf(BlogURI, rdf:type, schema:'Blog'),
+	lrdf(BlogURI, schema:name, Title),
 	rdf(URI, rdf:type, schema:'BlogPosting'),
 	lrdf(URI, schema:name, Name),
 	lrdf(URI, schema:articleBody, Body),
-	reply_html_page([\head],[\view_post(Name, Body)]).
+	lrdf(URI, schema:dateCreated, Date),
+	reply_html_page([\head],[\view_post(Title, Name, Date, Body)]).
 
 content(_, Request) :- http_404([],Request).
+
+% About
+
+about(_Request) :-
+	rdf(URI, rdf:type, schema:'Blog'),
+	lrdf(URI, schema:name, Title),
+	lrdf(URI, schema:abstract, Body),
+	lrdf(URI, schema:dateCreated, Date),
+	reply_html_page([\head],[\view_post(Title, 'About', Date, Body)]).
 
 post_link(Post) :-
 	rdf(URI, rdf:type, schema:'BlogPosting'),
@@ -55,10 +70,12 @@ post_link(Post) :-
 	lrdf(URI, schema:dateCreated, Date),
 	Post = post(Title, URI, Date).
 
-index(Request) :-
+index(_Request) :-
 	findall(Post, post_link(Post), Posts),
 	sort(3, @>=, Posts, SortedPosts),
-	reply_html_page([\head], [\view_index(SortedPosts)]).
+	rdf(URI, rdf:type, schema:'Blog'),
+	lrdf(URI, schema:name, Title),
+	reply_html_page([\head], [\view_index(Title, SortedPosts)]).
 
 content_uri(Request, URI) :-
 	member(request_uri(Path), Request),

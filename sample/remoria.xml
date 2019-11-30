@@ -6,9 +6,9 @@
 <rdf:RDF 
     xmlns:rdf="&rdf;"
     xmlns:schema="https://schema.org/"
-    xml:base="https://remoria.adrianistan.eu/"
+    xml:base="https://journal.adrianistan.eu/"
     >
-    <rdf:Description rdf:type="https://schema.org/Blog" rdf:about="https://remoria.adrianistan.eu">
+    <rdf:Description rdf:type="https://schema.org/Blog" rdf:about="https://journal.adrianistan.eu">
         <schema:author rdf:resource="author/aarroyoc"/>
         <schema:dateCreated>2019-07-25</schema:dateCreated>
         <schema:dateModified>2019-07-25</schema:dateModified>
@@ -16,9 +16,19 @@
         <schema:keywords>programming,software,rust,prolog</schema:keywords>
         <schema:inLanguage>en</schema:inLanguage>
         <schema:license>https://creativecommons.org/licenses/by-nc-sa/4.0/</schema:license>
-        <schema:description>Self-portrait of Adrián Arroyo in English web</schema:description>
-        <schema:name>Remoria</schema:name>
-        <schema:url>https://remoria.adrianistan.eu</schema:url>
+        <schema:description>Adrián Arroyo's thoughts about software and programming</schema:description>
+        <schema:name>Adrianistan Journal</schema:name>
+        <schema:url>https://journal.adrianistan.eu</schema:url>
+        <schema:abstract>
+        <![CDATA[
+            <p>Welcome to Adrianistan Journal, the place where I write my thoughts about software and programming.</p>
+
+            <p>My name is Adrián Arroyo, I'm from Valladolid (Spain), and this is my blog en English. I have another one in <a href="https://blog.adrianistan.eu">Spanish</a> with more content.
+            I'm currently finishing my studies and having an internship at Telefónica I+D. I usually write about Rust, Prolog, Python, machine learning, algorithms, ...</p>
+
+            <p>This website is running under a software I wrote in SWI Prolog, using RDF for data storage and manipulation. The code is available here: <a href="https://github.com/aarroyoc/remoria">https://github.com/aarroyoc/remoria</a></p>
+        ]]>
+        </schema:abstract>
     </rdf:Description>
 
     <rdf:Description rdf:type="https://schema.org/Person" rdf:about="author/aarroyoc">
