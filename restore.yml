@@ -1,0 +1,9 @@
+- hosts: all
+  remote_user: pi
+  become_method: sudo
+  name: "Restore Remoria"
+  tasks:
+   - name: Copy RDF XML
+     copy:
+      src: backups/remoria.xml
+      dest: /home/pi/remoria/db/remoria.xml

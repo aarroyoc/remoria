@@ -5,7 +5,4 @@ services:
   ports:
    - "2345:2345"
   volumes:
-   - database:/opt/remoria/db
-
-volumes:
- database:
+   - ./db:/opt/remoria/db

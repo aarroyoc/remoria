@@ -1,0 +1,10 @@
+- hosts: all
+  remote_user: pi
+  become_method: sudo
+  name: "Backup Remoria"
+  tasks:
+   - name: Download RDF XML
+     fetch:
+      src: /home/pi/remoria/db/remoria.xml
+      dest: backups/remoria-{{ ansible_date_time.date }}.xml
+      flat: yes
