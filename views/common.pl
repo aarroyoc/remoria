@@ -29,7 +29,8 @@ meta -->
     },
     html([
         meta([name=description,content=Description]),
-        meta([name=keywords,content=Keywords])
+        meta([name=keywords,content=Keywords]),
+        meta([name=viewport,content="width=device-width, initial-scale=1"])
     ]).
 
 head --> 
