@@ -51,7 +51,8 @@ content(_Path, Request) :-
 	lrdf(URI, schema:name, Name),
 	lrdf(URI, schema:articleBody, Body),
 	lrdf(URI, schema:dateCreated, Date),
-	reply_html_page([\head],[\view_post(Title, Name, Date, Body)]).
+	findall(Comment, rdf(URI, schema:comment, Comment), Comments),
+	reply_html_page([\head],[\view_post(Title, Name, Date, Body, Comments)]).
 
 content(_, Request) :- http_404([],Request).
 

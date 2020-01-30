@@ -62,7 +62,19 @@
         </schema:articleBody>
         <schema:author rdf:resource="author/aarroyoc"/>
         <schema:name>Hello world!</schema:name>
+        <schema:comment rdf:resource="post/hello-world/comment/1"/>
 	<schema:dateCreated>2019-10-29</schema:dateCreated>
+    </rdf:Description>
+
+    <rdf:Description rdf:type="https://schema.org/Comment" rdf:about="post/hello-world/comment/1">
+        <schema:text>Well done!</schema:text>
+        <schema:author>
+            <rdf:Description rdf:type="https://schema.org/Person">
+                <schema:name>Ricardo Feynman</schema:name>
+                <schema:email>feynman@richard.net</schema:email>
+                <schema:url>http://feynman.caltech.edu</schema:url>
+            </rdf:Description>
+        </schema:author>
     </rdf:Description>
 
 

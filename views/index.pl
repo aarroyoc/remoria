@@ -23,5 +23,5 @@ view_index(Title, Posts) -->
             h2('All posts'),
 	    ul(HTMLLinks)
 	]),
-	footer(['Copyright 2019 by Adrián Arroyo Calle. Proudly running using ', a(href='https://github.com/aarroyoc/remoria','Remoria'), ' a blog engine for SWI Prolog'])
+	footer(['Copyright 2019-2020 by Adrián Arroyo Calle. Proudly running using ', a(href='https://github.com/aarroyoc/remoria','Remoria'), ' a blog engine for SWI Prolog'])
     ]).
